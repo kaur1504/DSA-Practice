@@ -1,0 +1,37 @@
+import java.util.PriorityQueue;
+
+class MedianFinder {
+    private PriorityQueue<Integer> left;  // Max-Heap for the lower half
+    private PriorityQueue<Integer> right; // Min-Heap for the upper half
+
+    public MedianFinder() {
+        left = new PriorityQueue<>((a, b) -> b - a); // Max-Heap
+        right = new PriorityQueue<>();               // Min-Heap
+    }
+
+    public void addNum(int num) {
+        // Step 1: Add to max-heap first (left)
+        left.offer(num);
+
+        // Step 2: Balance max-heap and min-heap
+        if (!right.isEmpty() && left.peek() > right.peek()) {
+            right.offer(left.poll());
+        }
+        
+        // Step 3: Ensure the size property
+        if (left.size() > right.size() + 1) {
+            right.offer(left.poll());
+        } else if (right.size() > left.size()) {
+            left.offer(right.poll());
+        }
+    }
+
+    public double findMedian() {
+        // If heaps are of equal size, return the average of the roots
+        if (left.size() == right.size()) {
+            return (left.peek() + right.peek()) / 2.0;
+        }
+        // Else return the root of the max-heap
+        return left.peek();
+    }
+}
