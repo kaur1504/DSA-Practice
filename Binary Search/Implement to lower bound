@@ -1,0 +1,29 @@
+public class FloorInSortedArray {
+    public static int findFloor(int[] arr, int k) {
+        int low = 0, high = arr.length - 1;
+        int result = -1; // Default to -1 if no valid floor is found
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] <= k) {
+                result = mid; // Update result as a potential floor
+                low = mid + 1; // Move to the right to find a larger candidate
+            } else {
+                high = mid - 1; // Move to the left
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 2, 8, 10, 11, 12, 19};
+        System.out.println(findFloor(arr1, 0)); // Output: -1
+        System.out.println(findFloor(arr1, 5)); // Output: 1
+        System.out.println(findFloor(arr1, 1)); // Output: 0
+
+        int[] arr2 = {1, 2, 8};
+        System.out.println(findFloor(arr2, 1)); // Output: 0
+    }
+}
