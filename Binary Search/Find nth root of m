@@ -1,0 +1,33 @@
+class Solution
+{
+    public int NthRoot(int n, int m)
+    {
+        // code here
+        if (m == 1) return 1;
+        int low = 1, high = m;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            long power = power(mid, n);
+
+            if (power == m) {
+                return mid;
+            } else if (power > m || power < 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return -1;
+    }
+    private static long power(int base, int exp) {
+        long result = 1;
+        for (int i = 0; i < exp; i++) {
+            result *= base;
+            if (result > Integer.MAX_VALUE)
+            return Long.MAX_VALUE;
+            
+        }
+        return result;
+    }
+}
