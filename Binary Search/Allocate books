@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+public class Solution {
+    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+        // int n = arr.size();
+
+        if (m > n) {
+            return -1; // Not possible to allocate if students > books
+        }
+
+        int low = getMax(arr); // The minimum possible value is the max book size
+        int high = getSum(arr); // The maximum possible value is the sum of all books
+        int result = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (isPossible(arr, n, m, mid)) {
+                result = mid; // Store the potential result
+                high = mid - 1; // Try to minimize further
+            } else {
+                low = mid + 1; // Increase the range
+            }
+        }
+
+        return result;
+    }
+
+    private static boolean isPossible(ArrayList<Integer> arr, int n, int m, int maxPages) {
+        int studentCount = 1; // Start with one student
+        int pagesSum = 0;
+
+        for (int pages : arr) {
+            if (pagesSum + pages > maxPages) {
+                studentCount++;
+                pagesSum = pages;
+
+                if (studentCount > m) {
+                    return false; // Too many students needed
+                }
+            } else {
+                pagesSum += pages;
+            }
+        }
+
+        return true; // Allocation is possible
+    }
+
+    private static int getMax(ArrayList<Integer> arr) {
+        int max = 0;
+        for (int pages : arr) {
+            max = Math.max(max, pages);
+        }
+        return max;
+    }
+
+    private static int getSum(ArrayList<Integer> arr) {
+        int sum = 0;
+        for (int pages : arr) {
+            sum += pages;
+        }
+        return sum;
+    }
+}
