@@ -1,0 +1,55 @@
+class Solution {
+    public int splitArray(int[] nums, int k) {
+        int low = getMax(nums); 
+        int high = getSum(nums); 
+        int result=high;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (isPossible(nums, k, mid)) {
+                result = mid; // Try to minimize further
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return result;
+    }
+
+    private static boolean isPossible(int[] nums, int k, int maxSum) {
+        int subarrayCount = 1; // Start with one subarray
+        int currentSum = 0;
+
+        for (int num : nums) {
+            if (currentSum + num > maxSum) {
+                subarrayCount++;
+                currentSum = num;
+
+                if (subarrayCount > k) {
+                    return false; // More subarrays required than allowed
+                }
+            } else {
+                currentSum += num;
+            }
+        }
+
+        return true; // It is possible to split with the given maxSum
+    }
+
+    private static int getMax(int[] nums) {
+        int max = 0;
+        for (int num : nums) {
+            max = Math.max(max, num);
+        }
+        return max;
+    }
+
+    private static int getSum(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        return sum;
+    }
+}
