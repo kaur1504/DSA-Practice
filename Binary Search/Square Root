@@ -1,0 +1,25 @@
+class Solution {
+    int floorSqrt(int n) {
+        // Your code here
+         if (n == 1) {
+            return 1; // Square root of 1 is 1
+        }
+        
+        int low = 1, high = n, ans = 0;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            long square = (long) mid * mid; // Prevent overflow
+            
+            if (square == n) {
+                return mid; // Perfect square found
+            } else if (square < n) {
+                ans = mid; // Store the potential floor value
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        
+        return ans;
+    }
+}
