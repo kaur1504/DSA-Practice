@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int findLargestMinDistance(ArrayList<Integer> boards, int k)
+    {
+        //    Write your code here.
+        int n = boards.size();
+
+        int low = getMax(boards); // Minimum time is the max length of a single board
+        int high = getSum(boards); // Maximum time is the total length of all boards
+        int result = high;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (isPossible(boards, n, k, mid)) {
+                result = mid; // Store the possible result
+                high = mid - 1; // Try to find a smaller max time
+            } else {
+                low = mid + 1; // Increase the range
+            }
+        }
+
+        return result;
+    }
+
+    private static boolean isPossible(ArrayList<Integer> boards, int n, int k, int maxTime) {
+        int paintersRequired = 1;
+        int currentSum = 0;
+
+        for (int length : boards) {
+            if (currentSum + length > maxTime) {
+                paintersRequired++;
+                currentSum = length;
+
+                if (paintersRequired > k) {
+                    return false; // Too many painters required
+                }
+            } else {
+                currentSum += length;
+            }
+        }
+
+        return true;
+    }
+
+    private static int getMax(ArrayList<Integer> boards) {
+        int max = 0;
+        for (int length : boards) {
+            max = Math.max(max, length);
+        }
+        return max;
+    }
+
+    private static int getSum(ArrayList<Integer> boards) {
+        int sum = 0;
+        for (int length : boards) {
+            sum += length;
+        }
+        return sum;
+    }
+}
