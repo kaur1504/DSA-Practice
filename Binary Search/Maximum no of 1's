@@ -1,0 +1,16 @@
+class Solution {
+    public int rowWithMax1s(int arr[][]) {
+        // code here
+        int max = -1;
+        int maxOnesCount = 0;
+        int col = arr[0].length - 1; // Start from the last column
+
+        for (int i = 0; i < arr.length; i++) {
+            while (col >= 0 && arr[i][col] == 1) {
+                col--; // Move left if 1 is found
+                max = i; // Update the row index
+            }
+        }
+        return max;
+    }
+}
