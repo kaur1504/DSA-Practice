@@ -1,0 +1,23 @@
+
+class Solution
+{ 
+    static void reverse(Stack<Integer> s)
+    {
+        // add your code here
+        if (!s.isEmpty()) {
+            int top = s.pop();
+            reverse(s);
+            insertAtBottom(s, top);
+        }
+    }
+    private static void insertAtBottom(Stack<Integer> stack, int element) {
+        if (stack.isEmpty()) {
+            stack.push(element);
+        } 
+        else {
+            int top = stack.pop();
+            insertAtBottom(stack, element);
+            stack.push(top);
+        }
+    }
+}
