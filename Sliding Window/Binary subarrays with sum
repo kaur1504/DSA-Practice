@@ -1,0 +1,22 @@
+class Solution {
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int a=0,b=0,sum1=0,sum2=0,c=0,result=0;
+        int n=nums.length;
+        while(c<n)
+        {
+            sum1+=nums[c];
+            sum2+=nums[c];
+        while(a<=c && sum1>goal)
+        {
+            sum1-=nums[a++];
+        }
+        while(b<=c && sum2>=goal)
+        {
+            sum2-=nums[b++];
+        }
+        result+=b-a;
+        ++c;
+        }
+        return result;
+        }
+}
