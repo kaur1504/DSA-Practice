@@ -1,0 +1,21 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int maxWindow = 0;
+        int st = 0;
+        int e = 0;
+        int[] arr = new int[256];
+        while (e < s.length()){
+            int index = s.charAt(e);
+            arr[index]++;
+            while (arr[index] == 2){
+                int r_index = s.charAt(st);
+                arr[r_index]--;
+                st++;
+            }
+            int curr = e - st + 1;
+            maxWindow = Math.max(curr , maxWindow);
+            e++;
+        }
+        return maxWindow;
+    }
+}
