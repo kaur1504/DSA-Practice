@@ -1,0 +1,20 @@
+class Solution {
+    static int findPlatform(int arr[], int dep[]) {
+        Arrays.sort(arr);
+        Arrays.sort(dep);
+        int n = arr.length;
+        int platformNeeded = 0, maxPlatforms = 0;
+        int i = 0, j = 0;
+        while (i < n && j < n) {
+            if (arr[i] <= dep[j]) {
+                platformNeeded++;
+                i++; // Move to the next arriving train
+            } else {
+                platformNeeded--;
+                j++; // Move to the next departing train
+            }
+            maxPlatforms = Math.max(maxPlatforms, platformNeeded);
+        }
+        return maxPlatforms;
+    }
+}
