@@ -1,0 +1,26 @@
+
+class Solution{
+    static int pageFaults(int N, int C, int pages[]){
+        // code here
+        Map<Integer, Integer> memory = new HashMap<>();
+        LinkedList<Integer> lruQueue = new LinkedList<>();
+        int pageFaults = 0;
+        for (int i = 0; i < N; i++) {
+            int currentPage = pages[i];
+            if (!memory.containsKey(currentPage)) {
+                pageFaults++;
+                if (lruQueue.size() == C) {
+                    int lruPage = lruQueue.removeFirst();
+                    memory.remove(lruPage);
+                }
+                memory.put(currentPage, i);
+                lruQueue.addLast(currentPage);
+            } 
+            else {
+                lruQueue.remove((Integer) currentPage);
+                lruQueue.addLast(currentPage);
+            }
+        }
+        return pageFaults;
+    }
+}
