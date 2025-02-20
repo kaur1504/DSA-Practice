@@ -28,10 +28,8 @@ class Solution {
             for (int j = startCol; j < startCol + 3; j++) {
                 if ((i != row || j != col) && board[i][j] == current) {
                     return false;
-                }
-            }
+                }        }
         }
-
         return true;
     }
     }
