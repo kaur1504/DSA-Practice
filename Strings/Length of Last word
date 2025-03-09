@@ -5,12 +5,11 @@ class Solution {
         {
             i--;
         }
-        int lastidx=i;
+        int idx=i;
         while(i>=0 && s.charAt(i)!=' ')
         {
             i--;
         }
-        return lastidx-i;
-        
+        return idx-i;
     }
 }
