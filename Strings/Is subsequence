@@ -11,8 +11,7 @@ class Solution {
                 if (idx1 == s.length()) {
                     return true;
                 }
-            }
-            idx2++;
+            } idx2++;
         }
         return false;
     }
