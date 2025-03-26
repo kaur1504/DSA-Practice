@@ -67,8 +67,8 @@ class Solution {
         int sourceNode,
         int time,
         int income,
-        int[] amount
-    ) {
+        int[] amount)
+{
         visited[sourceNode] = true;
         if (
             !bobPath.containsKey(sourceNode) || time < bobPath.get(sourceNode)
