@@ -1,0 +1,34 @@
+class Solution {
+    public int longestPalindrome(String s, String t) {
+        int maxl=0;
+        int n=s.length();
+        int m=t.length();
+        for(int i=0;i<=n;i++){
+            for(int j=i;j<=n;j++){
+                String ans=s.substring(i,j);
+                for(int k=0;k<=m;k++){
+                    for(int l=k;l<=m;l++){
+                        String ans2=t.substring(k,l);
+                        String total=ans+ans2;
+                        if(func(total)){
+                            maxl=Math.max(maxl,total.length());
+                        }
+                    }
+                }
+            }
+        }
+        return maxl;
+    }
+    public static boolean func(String str){
+        int left = 0;
+        int right = str.length() - 1;
+        while(left<right){
+            if (str.charAt(left) != str.charAt(right)){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
