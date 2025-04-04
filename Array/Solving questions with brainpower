@@ -1,0 +1,38 @@
+class Solution {
+    public long mostPoints(int[][] questions) {
+        return func(0,questions);
+    }
+    public long func(int i,int[][] questions){
+        if(i>=questions.length){
+            //basecase:out of the range 
+            return 0;
+        }
+        int points=questions[i][0];
+        int brainpower=questions[i][1];
+        long solve=points+func(i+brainpower+1,questions);
+        long skip=func(i+1,questions);
+        return Math.max(solve,skip);
+    }
+} 
+///////////////////////Optimal approach////////////////////////////////////
+class Solution {
+    public long mostPoints(int[][] questions) {
+        int n=questions.length;
+        Long dp[]=new Long[n];
+        return func(0,questions,dp);
+    }
+    public long func(int i,int[][] questions,Long dp[]){
+        if(i>=questions.length){
+            //basecase:out of the range 
+            return 0;
+        }
+        if(dp[i]!=null){
+            return dp[i];
+        }
+        int points=questions[i][0];
+        int brainpower=questions[i][1];
+        long solve=points+func(i+brainpower+1,questions,dp);
+        long skip=func(i+1,questions,dp);
+        return dp[i]=Math.max(solve,skip);
+    }
+}
