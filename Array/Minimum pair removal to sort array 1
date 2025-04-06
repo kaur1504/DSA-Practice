@@ -1,0 +1,30 @@
+class Solution {
+    public int minimumPairRemoval(int[] nums) {
+        int count=0;
+        int sum=0;
+        int minsum=Integer.MAX_VALUE;
+        int idx=-1;
+        while(!func(nums)){
+            for(int i=0;i<nums.length-1;i++){
+            // int j=i+1;
+                sum+=nums[i]+nums[i+1];
+                if(sum<minsum){
+                minsum=sum;
+                idx=i;
+            }
+        }
+        int val=nums[idx]+nums[idx+1];
+        nums[idx]=val;
+        count++;
+        }
+        return count;
+    }
+    public boolean func(int[]nums){
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]<nums[i-1]){
+                return false;
+            }
+        }
+        return true;
+    }
+}©leetcode
