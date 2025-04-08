@@ -1,0 +1,18 @@
+class Solution {
+    public int maximumProduct(int[] nums, int k) {
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        final int mod=1_000_000_007;
+        for(int num:nums){
+            pq.offer(num);
+        }
+        while(k-->0){
+            int minimum=pq.poll();
+            pq.offer(minimum+1);
+        }
+        long prod=1;
+        while (!pq.isEmpty()) {
+            prod=(prod*pq.poll())%mod;
+        }
+        return (int) prod;
+    }
+}
