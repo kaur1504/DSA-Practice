@@ -1,0 +1,25 @@
+class Solution {
+    public String countAndSay(int n) {
+        if (n<=0) {
+            return "";
+        }
+        String result = "1";
+        for(int i=1;i<n;i++) {
+            result=func(result);
+        }
+        return result;
+    }
+    public static String func(String sequence) {
+        StringBuilder nextSequence = new StringBuilder();
+        int length = sequence.length();
+        for (int i=0;i<length; i++) {
+            int count=1;
+            while(i<length-1 && sequence.charAt(i)==sequence.charAt(i + 1)) {
+                count++;
+                i++;
+            }
+            nextSequence.append(count).append(sequence.charAt(i));
+        }
+        return nextSequence.toString();
+    }
+}
