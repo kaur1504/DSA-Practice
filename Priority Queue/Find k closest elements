@@ -4,10 +4,13 @@ class Solution {
         Math.abs(x-b) - Math.abs(x-a): b-a);
         for(int i: arr){ 
             pq.offer(i);
-            if(pq.size() > k) pq.poll(); 
+            if(pq.size() > k)               
+                  pq.poll(); 
         }
         List<Integer> out = new ArrayList<>(pq);
+
         Collections.sort(out);
+
         return out;
     }
 }
