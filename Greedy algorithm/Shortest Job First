@@ -1,6 +1,5 @@
 class Solution {
-    static int solve(int bt[] ) {
-    // code here
+   public static int solve(int bt[] ) {
     Arrays.sort(bt);
     int total=0;
     int curr=0;
