@@ -12,8 +12,7 @@ class Solution {
         if (row == n) {
             result.add(constructBoard(board));
             return;
-        }
-for (int col = 0; col < n; col++) {
+        }for (int col = 0; col < n; col++) {
             if (isSafe(board, row, col, n)) {
                 board[row][col] = 'Q'; // Place queen
                 solveNQueensHelper(result, board, row + 1, n); 
