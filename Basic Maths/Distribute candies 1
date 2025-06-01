@@ -1,0 +1,18 @@
+class Solution {
+    public int distributeCandies(int n, int limit) {
+        int ans=0;
+        for(int i=0;i<=limit;i++){
+            int count = n-i;
+            for(int j=0; j<=Math.min(limit, count); j++) {
+                count-=j;
+                for(int k=0; k<=Math.min(limit, count); k++) {
+                    count-=k;
+                    if(count == 0) ans++;
+                    count+=k;
+                }
+                count+=j;
+            }
+        }
+        return ans;
+    }
+}
