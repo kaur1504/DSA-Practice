@@ -9,6 +9,8 @@ class Solution {
                 count[num]++;
             }   
         }
+
+
         int repeated = -1;
         int missing = -1;
         for (int i=1;i<=size;i++) {
@@ -22,6 +24,8 @@ class Solution {
                 break;
             }
         }
+
+
         return new int[] {repeated, missing};
     }
 }
