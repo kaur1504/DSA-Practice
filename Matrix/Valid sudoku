@@ -11,7 +11,6 @@ class Solution {
         return true;
     }
     private static boolean isValid(char[][] board, int row, int col, char current) {
-        // Check row
         for (int i = 0; i < 9; i++) {
             if (i != col && board[row][i] == current) {
                 return false;
@@ -31,5 +30,6 @@ class Solution {
                 }        }
         }
         return true;
-    }
-    }
+}
+
+}
