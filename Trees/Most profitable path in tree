@@ -1,5 +1,5 @@
-// class Solution {
-//     public int mostProfitablePath(int[][] edges, int bob, int[] amount) {
+ class Solution {
+  public int mostProfitablePath(int[][] edges, int bob, int[] amount) {
 //         int n = amount.length;
 //         Map<Integer, List<Integer>> graph = new HashMap<>();
 //         for (int[] edge : edges) {
